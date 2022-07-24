@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Ahmed Sheref Task</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phone_num">phone number :</string>
+    <string name="login">Sign In</string>
+    <string name="password">Password</string>
+    <string name="signIn">Sign In</string>
+    <string name="loading">Loading ...</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="hello_user">Hello &#032;</string>
 </resources>
