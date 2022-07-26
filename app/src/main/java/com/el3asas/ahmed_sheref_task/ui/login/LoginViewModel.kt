@@ -22,8 +22,8 @@ class LoginViewModel @Inject constructor(private val repository: LoginRepository
         isLoading.value = false
     }
 
-    val userName = MutableStateFlow("")
-    val password = MutableStateFlow("")
+    val userName = MutableStateFlow("ahmed sheref")
+    val password = MutableStateFlow("asdasdasd")
 
     fun loginUser(
         v: View,

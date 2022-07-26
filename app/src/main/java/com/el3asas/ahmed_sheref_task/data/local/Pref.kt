@@ -7,6 +7,7 @@ import javax.inject.Singleton
 @Singleton
 class Pref @Inject constructor(context: Application) {
 
+    val userToken: String = "Ahmed Sheref Token"
     private val pref by lazy { context.getSharedPreferences("MedicalApp", 0) }
 
     private val LOGIN_KEY = "isLogin"

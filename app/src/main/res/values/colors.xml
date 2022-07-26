@@ -5,8 +5,8 @@
     <color name="colorSecondary">#d602ee</color>
     <color name="colorSecondaryVariant">#ee0290</color>
 
-    <color name="toggle_true">#1088CA</color>
-    <color name="toggle_false">#273D49</color>
+    <color name="toggle_true">#273D49</color>
+    <color name="toggle_false">@color/primaryColor</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
