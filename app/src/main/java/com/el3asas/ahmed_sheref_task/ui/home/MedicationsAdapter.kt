@@ -2,15 +2,16 @@ package com.el3asas.ahmed_sheref_task.ui.home
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import androidx.viewbinding.ViewBinding
 import com.el3asas.ahmed_sheref_task.databinding.ItemProblemHomeBinding
 import com.el3asas.ahmed_sheref_task.models.AssociatedDrugItem
 import com.el3asas.utils.binding.RecyclerAdapterBinding
 
 class MedicationsAdapter(
-    itemClickListener: ItemClickListener,
+    private val itemClickListener: MedicationItemClickListener,
     override val bindingInflater: (LayoutInflater) -> ViewBinding = ItemProblemHomeBinding::inflate
-) : RecyclerAdapterBinding<ItemProblemHomeBinding>(itemClickListener) {
+) : RecyclerAdapterBinding<ItemProblemHomeBinding>() {
 
     private lateinit var list: List<AssociatedDrugItem>
 
@@ -20,8 +21,14 @@ class MedicationsAdapter(
         val item = list[position]
         holder.binding.apply {
             viewModel = item
+            saveBtn.setOnClickListener {
+                itemClickListener.onInsertItemClick(it, position)
+            }
+            root.setOnClickListener {
+                itemClickListener.onItemClick(it, position)
+            }
         }
-        holder.bindListener()
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -31,5 +38,10 @@ class MedicationsAdapter(
     }
 
     fun getItem(position: Int) = list[position]
+
+    interface MedicationItemClickListener {
+        fun onItemClick(v: View, position: Int)
+        fun onInsertItemClick(v: View, pos: Int)
+    }
 
 }

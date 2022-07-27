@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_homeFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
     </fragment>
     <dialog
         android:id="@+id/detailsBottomSheet"
@@ -48,4 +51,12 @@
         android:id="@+id/welcomeFragment"
         android:name="com.el3asas.ahmed_sheref_task.ui.welcome.WelcomeDialog"
         android:label="WelcomeFragment" />
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.el3asas.ahmed_sheref_task.ui.saved.SavedFragment"
+        android:label="SavedFragment" >
+        <action
+            android:id="@+id/action_savedFragment_to_detailsBottomSheet"
+            app:destination="@id/detailsBottomSheet" />
+    </fragment>
 </navigation>

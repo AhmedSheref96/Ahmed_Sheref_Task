@@ -1,17 +1,18 @@
 package com.el3asas.ahmed_sheref_task.ui.home
 
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.el3asas.ahmed_sheref_task.data.local.room.MedicineController
 import com.el3asas.ahmed_sheref_task.models.AssociatedDrugItem
 import com.el3asas.ahmed_sheref_task.models.ClassNameItem
 import com.el3asas.utils.base.BaseViewModel
-import com.el3asas.utils.binding.RecyclerAdapterBinding
-import com.el3asas.utils.utils.customSnackBar
 import com.el3asas.utils.utils.getData
 import com.el3asas.utils.utils.navigate
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,13 +20,20 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val repository: HomeRepository,
     private val medicineController: MedicineController
-) : BaseViewModel(),
-    RecyclerAdapterBinding.ItemClickListener {
+) : BaseViewModel(), MedicationsAdapter.MedicationItemClickListener {
     val userName = repository.userName
 
     val recyclerViewAdapter = MedicationsAdapter(this)
+    private val _isError: MutableStateFlow<String?> = MutableStateFlow(null)
+    val isError: StateFlow<String?> = _isError
 
-    fun getProblemsData(v: View) {
+    var welocomeScreenShowed = false
+
+    init {
+        getData()
+    }
+
+    private fun getData() {
         viewModelScope.launch {
             getData(
                 repository.getProblemsData(),
@@ -60,11 +68,7 @@ class HomeViewModel @Inject constructor(
                     }
                 },
                 onError = {
-                    customSnackBar(
-                        v,
-                        it,
-                        com.el3asas.utils.R.drawable.ic_outline_error_outline_24
-                    ) {}
+                    _isError.value = it
                 },
                 isLoading
             )
@@ -80,11 +84,20 @@ class HomeViewModel @Inject constructor(
         recyclerViewAdapter.notifyItemChanged(pos, false)
     }
 
-    override fun onItemClickListener(v: View, pos: Int) {
+    fun openSaved(v: View) {
+        navigate(v.findNavController(), HomeFragmentDirections.actionHomeFragmentToSavedFragment())
+    }
+
+    override fun onItemClick(v: View, position: Int) {
         val dir = HomeFragmentDirections.actionHomeFragmentToDetailsBottomSheet(
-            recyclerViewAdapter.getItem(pos)
+            recyclerViewAdapter.getItem(position)
         )
         navigate(v.findNavController(), dir)
+    }
+
+    override fun onInsertItemClick(v: View, pos: Int) {
+        insertToDB(pos)
+        Toast.makeText(v.context, "Item Inserted", Toast.LENGTH_LONG).show()
     }
 
 }

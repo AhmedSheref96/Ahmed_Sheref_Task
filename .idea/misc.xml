@@ -8,6 +8,7 @@
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/drawable/edit_text_bg.xml" value="0.1265" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/drawable/home_top_img.xml" value="0.1265" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/drawable/ic_above_image.xml" value="0.1265" />
+        <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.144" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/drawable/ic_user.xml" value="0.121" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/drawable/item_bg.xml" value="0.1265" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/drawable/login_card_bg.xml" value="0.1265" />
@@ -15,13 +16,15 @@
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/dialog_welcome.xml" value="0.1" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_blank.xml" value="0.2" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_details.xml" value="0.1859375" />
-        <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_home.xml" value="0.16296296296296298" />
+        <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_home.xml" value="0.12604166666666666" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_login.xml" value="0.1814814814814815" />
+        <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_saved.xml" value="0.2" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_splash.xml" value="0.1" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_welcome.xml" value="0.19166666666666668" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/home_content.xml" value="0.2" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/item_medication.xml" value="0.19895833333333332" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/item_problem_home.xml" value="0.2" />
+        <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/item_saved_problem.xml" value="0.2" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/sheet_details.xml" value="0.1" />
       </map>
     </option>
