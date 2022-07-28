@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import com.el3asas.ahmed_sheref_task.data.local.room.MedicineController
 import com.el3asas.ahmed_sheref_task.models.AssociatedDrugItem
 import com.el3asas.ahmed_sheref_task.models.ClassNameItem
+import com.el3asas.ahmed_sheref_task.models.MedicationsClassesItem
 import com.el3asas.utils.base.BaseViewModel
 import com.el3asas.utils.utils.getData
 import com.el3asas.utils.utils.navigate
@@ -42,29 +43,7 @@ class HomeViewModel @Inject constructor(
                         val medicineList =
                             list[0].diabetes?.get(0)?.medications?.get(0)?.medicationsClasses
 
-                        val d = medicineList?.filterNotNull()?.map { medicineList ->
-                            val mapped = arrayListOf<ClassNameItem>()
-                            medicineList.className2?.filterNotNull()
-                                ?.let { it1 -> mapped.addAll(it1) }
-                            medicineList.className?.filterNotNull()
-                                ?.let { it1 -> mapped.addAll(it1) }
-                            mapped
-                        }?.map { classNameItems ->
-                            val mapped = arrayListOf<AssociatedDrugItem>()
-                            classNameItems.forEach {
-                                mapped.addAll(it.associatedDrug?.filterNotNull() ?: emptyList())
-                                mapped.addAll(it.associatedDrug2?.filterNotNull() ?: emptyList())
-                            }
-                            mapped
-                        }
-
-                        val data = arrayListOf<AssociatedDrugItem>()
-                        d?.forEach {
-                            data.addAll(it.toList())
-                            data.addAll(it.toList())
-                        }
-
-                        recyclerViewAdapter.setData(data)
+                        recyclerViewAdapter.setData(mappingData(medicineList))
                     }
                 },
                 onError = {
@@ -73,6 +52,32 @@ class HomeViewModel @Inject constructor(
                 isLoading
             )
         }
+    }
+
+    fun mappingData(medicineList: List<MedicationsClassesItem?>?): List<AssociatedDrugItem> {
+        val d = medicineList?.filterNotNull()?.map { medicineList ->
+            val mapped = arrayListOf<ClassNameItem>()
+            medicineList.className2?.filterNotNull()
+                ?.let { it1 -> mapped.addAll(it1) }
+            medicineList.className?.filterNotNull()
+                ?.let { it1 -> mapped.addAll(it1) }
+            mapped
+        }?.map { classNameItems ->
+            val mapped = arrayListOf<AssociatedDrugItem>()
+            classNameItems.forEach {
+                mapped.addAll(it.associatedDrug?.filterNotNull() ?: emptyList())
+                mapped.addAll(it.associatedDrug2?.filterNotNull() ?: emptyList())
+            }
+            mapped
+        }
+
+        val data = arrayListOf<AssociatedDrugItem>()
+        d?.forEach {
+            data.addAll(it.toList())
+            data.addAll(it.toList())
+        }
+
+        return data
     }
 
     fun insertToDB(pos: Int) {
