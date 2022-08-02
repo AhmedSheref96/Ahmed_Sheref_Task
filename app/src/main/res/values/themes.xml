@@ -63,4 +63,9 @@
         <item name="cornerSizeBottomRight">20%</item>
     </style>
 
+    <style name="expandedText">
+        <item name="android:textSize">@dimen/_18ssp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

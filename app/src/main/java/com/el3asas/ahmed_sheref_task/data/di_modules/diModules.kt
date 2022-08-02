@@ -7,6 +7,7 @@ import com.el3asas.ahmed_sheref_task.data.local.room.DataBase
 import com.el3asas.ahmed_sheref_task.data.local.room.MedicineDao
 import com.el3asas.ahmed_sheref_task.data.network.EndPoint
 import com.el3asas.ahmed_sheref_task.data.network.problems.ProblemsService
+import com.el3asas.ahmed_sheref_task.ui.home.DataFormatter
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
 import com.squareup.moshi.Moshi
@@ -45,6 +46,12 @@ object diSingletonModules {
         return Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDataFormatter(): DataFormatter {
+        return DataFormatter()
     }
 
     @Provides

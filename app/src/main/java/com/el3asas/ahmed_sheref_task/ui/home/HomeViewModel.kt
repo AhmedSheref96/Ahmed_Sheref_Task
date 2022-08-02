@@ -5,9 +5,6 @@ import android.widget.Toast
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.el3asas.ahmed_sheref_task.data.local.room.MedicineController
-import com.el3asas.ahmed_sheref_task.models.AssociatedDrugItem
-import com.el3asas.ahmed_sheref_task.models.ClassNameItem
-import com.el3asas.ahmed_sheref_task.models.MedicationsClassesItem
 import com.el3asas.utils.base.BaseViewModel
 import com.el3asas.utils.utils.getData
 import com.el3asas.utils.utils.navigate
@@ -15,12 +12,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repository: HomeRepository,
-    private val medicineController: MedicineController
+    val dataFormatter: DataFormatter,
+    private val medicineController: MedicineController?
 ) : BaseViewModel(), MedicationsAdapter.MedicationItemClickListener {
     val userName = repository.userName
 
@@ -34,6 +33,16 @@ class HomeViewModel @Inject constructor(
         getData()
     }
 
+    val getWelcomeText: String
+        get() {
+            val calendar = Calendar.getInstance()
+            return when (calendar.get(Calendar.HOUR_OF_DAY)) {
+                in 5..12 -> "Good morning "
+                in 12..18 -> "Good afternoon "
+                else -> "Good evening "
+            }
+        }
+
     private fun getData() {
         viewModelScope.launch {
             getData(
@@ -43,7 +52,7 @@ class HomeViewModel @Inject constructor(
                         val medicineList =
                             list[0].diabetes?.get(0)?.medications?.get(0)?.medicationsClasses
 
-                        recyclerViewAdapter.setData(mappingData(medicineList))
+                        recyclerViewAdapter.setData(dataFormatter.mappingData(medicineList))
                     }
                 },
                 onError = {
@@ -54,37 +63,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun mappingData(medicineList: List<MedicationsClassesItem?>?): List<AssociatedDrugItem> {
-        val d = medicineList?.filterNotNull()?.map { medicineList ->
-            val mapped = arrayListOf<ClassNameItem>()
-            medicineList.className2?.filterNotNull()
-                ?.let { it1 -> mapped.addAll(it1) }
-            medicineList.className?.filterNotNull()
-                ?.let { it1 -> mapped.addAll(it1) }
-            mapped
-        }?.map { classNameItems ->
-            val mapped = arrayListOf<AssociatedDrugItem>()
-            classNameItems.forEach {
-                mapped.addAll(it.associatedDrug?.filterNotNull() ?: emptyList())
-                mapped.addAll(it.associatedDrug2?.filterNotNull() ?: emptyList())
-            }
-            mapped
-        }
-
-        val data = arrayListOf<AssociatedDrugItem>()
-        d?.forEach {
-            data.addAll(it.toList())
-            data.addAll(it.toList())
-        }
-
-        return data
-    }
 
     fun insertToDB(pos: Int) {
         val item =
             recyclerViewAdapter.getItem(pos)
         viewModelScope.launch {
-            medicineController.insertMedicine(item)
+            medicineController?.insertMedicine(item)
         }
         recyclerViewAdapter.notifyItemChanged(pos, false)
     }

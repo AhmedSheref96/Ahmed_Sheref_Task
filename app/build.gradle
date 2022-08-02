@@ -16,7 +16,6 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
@@ -47,9 +46,37 @@ android {
     buildFeatures {
         dataBinding true
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+tasks.withType(Test) {
+    useJUnitPlatform()
+    testLogging {
+        exceptionFormat "full"
+        events "started", "skipped", "passed", "failed"
+        showStandardStreams true
+    }
 }
 
 dependencies {
+
+
+    testImplementation "org.robolectric:robolectric:4.4"
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
+
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
@@ -58,12 +85,19 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
+    implementation 'androidx.test.ext:junit-ktx:1.1.3'
+    implementation 'androidx.test:runner:1.4.0'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation "org.robolectric:robolectric:4.4"
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.42'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.38.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
 
     implementation "androidx.fragment:fragment-ktx:1.5.0"
     implementation "androidx.activity:activity-ktx:1.5.0"
@@ -82,7 +116,6 @@ dependencies {
 
     //My-Utils
     implementation 'com.github.AhmedSheref96:My-Utils:3.4'
-
 
     // navigation component
     def nav_version = "2.5.0"
@@ -105,7 +138,12 @@ dependencies {
     //hilt Di
     implementation "com.google.dagger:hilt-android:2.42"
     kapt "com.google.dagger:hilt-compiler:2.42"
-
+    testImplementation 'com.google.dagger:hilt-android-testing:2.42'
+    kaptTest 'com.google.dagger:hilt-android-compiler:2.38.1'
+    testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.42'
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.42")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
 
     //room
     def roomVersion = "2.4.2"
@@ -135,8 +173,6 @@ dependencies {
     //ssp
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
 
-
-
     //moshi
     implementation("com.squareup.moshi:moshi-kotlin:1.13.0")
 
@@ -146,6 +182,7 @@ dependencies {
     //swipe
     implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'
 
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 
 
 

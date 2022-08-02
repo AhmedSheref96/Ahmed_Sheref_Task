@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
     private val client: ProblemsClient,
-    private val pref: Pref
+    private val pref: Pref?
 ) {
     suspend fun getProblemsData() = safeCall {
         val response = client.getProblems()
@@ -22,6 +22,6 @@ class HomeRepository @Inject constructor(
         }
     }
 
-    val userName = pref.userName
+    val userName = pref?.userName
 
 }

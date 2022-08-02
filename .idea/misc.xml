@@ -16,7 +16,7 @@
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/dialog_welcome.xml" value="0.1" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_blank.xml" value="0.2" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_details.xml" value="0.1859375" />
-        <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_home.xml" value="0.12604166666666666" />
+        <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_home.xml" value="0.16" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_login.xml" value="0.1814814814814815" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_saved.xml" value="0.2" />
         <entry key="..\:/inin/AhmedSherefTask/app/src/main/res/layout/fragment_splash.xml" value="0.1" />
@@ -29,7 +29,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

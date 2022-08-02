@@ -28,8 +28,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentScrim="@color/primaryColor"
+                app:expandedTitleTextAppearance="@style/expandedText"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-                app:title='@{@string/hello_user+viewModel.userName}'>
+                app:title='@{viewModel.getWelcomeText+viewModel.userName.split(" ")[0]}'>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -80,19 +81,18 @@
             tools:listitem="@layout/item_problem_home" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:onClick="@{viewModel::openSaved}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_anchor="@id/appBarLayout"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_minus16sdp"
+            android:onClick="@{viewModel::openSaved}"
             android:text="saved"
-            app:backgroundTint="@color/colorSecondaryVariant"
             android:textColor="@color/white"
+            app:backgroundTint="@color/colorSecondaryVariant"
             app:icon="@drawable/ic_baseline_save_24"
             app:iconTint="@color/white"
-            android:layout_marginBottom="@dimen/_minus16sdp"
-            android:layout_marginHorizontal="@dimen/_16sdp"
+            app:layout_anchor="@id/appBarLayout"
             app:layout_anchorGravity="end|bottom" />
-
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
